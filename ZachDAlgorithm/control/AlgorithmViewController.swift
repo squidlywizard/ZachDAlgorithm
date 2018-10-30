@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ViewController: UIViewController
+public class AlgorithmViewController: UIViewController
 {
 
    public override func viewDidLoad() -> Void
@@ -24,6 +24,13 @@ public class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    @IBOutlet weak var image: UIImageView!
+    
+    
+    @IBOutlet weak var algorithmText: UILabel!
+    
     private func formatAlgorithm() -> Void
     {
         let title : String = "Xcode"
@@ -40,33 +47,27 @@ public class ViewController: UIViewController
         
         for step in algorithm
         {
-           let bullet : String = "👺"
+            let bullet : String = "👺"
             let formattedStep :String = "\n\(bullet) \(step)"
             let attributedStringStep : NSMutableAttributedString = NSMutableAttributedString(string: formattedStep)
-            let outlineStyle = createOutlineStyle()
+            let outlineStyle = createOutlineStyle()//Ns Mutable String is used to defunk strings
             
-            attributedStringStep.addAttributes(NSAttributedString.Key.paragraphStyle : outlineStyle], range: NSMakeRange(0, attributedStringStep.length))
+            attributedStringStep.addAttributes([NSAttributedStringKey.paragraphStyle : outlineStyle], range: NSMakeRange(0,attributedStringStep.length))
             
             fullAttributedString.append(attributedStringStep)
         }
-        
+        algorithmText.attributedText = fullAttributedString
     }
     
     private func createOutlineStyle() -> NSParagraphStyle
     {
-    let outlineStyle : NSMutableParagraphStyle = NSMutableParagraphStyle()
-    
-    outlineStyle.alignment = .left
-    outlineStyle.defaultTabInterval = 15
-    outlineStyle.firstLineHeadIndent = 20
-    outlineStyle.headIndent = 35
+        let outlineStyle : NSMutableParagraphStyle = NSMutableParagraphStyle()
+        
+        outlineStyle.alignment = .left
+        outlineStyle.defaultTabInterval = 15
+        outlineStyle.firstLineHeadIndent = 20
+        outlineStyle.headIndent = 35
         return outlineStyle
     }
-
-    @IBOutlet weak var image: UIImageView!
-    
-    @IBOutlet weak var Text: UILabel!
-    
-   
 }
 
